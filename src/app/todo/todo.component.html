@@ -9,7 +9,8 @@
       <label>Description</label>
       <input type="text" #description="ngModel" 
             [(ngModel)]="todo.clinic_description" class="form-control" 
-                name="description" required="required" minlength="5">
+                name="description" required="required" minlength="5"
+                placeholder="Test clinic">
     </fieldset>
 
     <fieldset class="form-group">
@@ -17,7 +18,8 @@
         <input type="text" #clinic_phone_number="ngModel"
         [ngModel]="todo.clinic_phone_number"
         (ngModelChange)="todo.clinic_phone_number = $event"
-        class="form-control" name="clinic_phone_number" required="required" maxlength="20" >
+        class="form-control" name="clinic_phone_number" required="required" maxlength="20"
+        placeholder="012345" >
     </fieldset>
     <label>
       State:

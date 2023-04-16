@@ -69,7 +69,7 @@ export class ListTodosComponent implements OnInit {
 
   updateTodo(id) {
     console.log(`update ${id}`)
-    this.router.navigate(['todos',id])
+    this.router.navigate(['clinic',id])
   }
 
   addTodo() {

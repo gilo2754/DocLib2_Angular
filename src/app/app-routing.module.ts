@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
   { path: 'clinics', component: ListTodosComponent, canActivate:[RouteGuardService] },
   { path: 'logout', component: LogoutComponent, canActivate:[RouteGuardService] },
-  { path: 'todos/:id', component: TodoComponent, canActivate:[RouteGuardService] },
+  { path: 'clinic/:id', component: TodoComponent, canActivate:[RouteGuardService] },
 
   { path: '**', component: ErrorComponent }
 ];

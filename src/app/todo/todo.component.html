@@ -2,25 +2,30 @@
 
 <div class="container">
   <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
-  <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">Enter valid Target Date</div>
   <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter atleast 5 characters in Description</div>
   
   <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
     <fieldset class="form-group">
       <label>Description</label>
       <input type="text" #description="ngModel" 
-            [(ngModel)]="todo.description" class="form-control" 
+            [(ngModel)]="todo.clinic_description" class="form-control" 
                 name="description" required="required" minlength="5">
     </fieldset>
 
     <fieldset class="form-group">
-        <label>Target Date</label>
-        <input type="date" #targetDate="ngModel"
-        [ngModel]="todo.targetDate | date:'yyyy-MM-dd' "
-        (ngModelChange)="todo.targetDate = $event"
-        class="form-control" name="targetDate" required="required" >
+        <label>clinic_phone_number</label>
+        <input type="text" #clinic_phone_number="ngModel"
+        [ngModel]="todo.clinic_phone_number"
+        (ngModelChange)="todo.clinic_phone_number = $event"
+        class="form-control" name="clinic_phone_number" required="required" maxlength="20" >
     </fieldset>
-
+    <label>
+      State:
+      <select [(ngModel)]="todo.clinic_state" name="clinic_state">
+        <option *ngFor="let state of  ['ACTIVE','INACTIVE','IN_REVIEW']" [value]="state">{{state}}</option>
+      </select>
+    </label>
+    
     <button type="submit" class="btn btn-success">Save</button>
   </form>  
 </div>

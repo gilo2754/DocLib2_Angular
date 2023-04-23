@@ -17,8 +17,9 @@ export class TodoDataService {
     //console.log("Execute Hello World Bean Service")
   }
 
-  deleteTodo(username, id){
-    return this.http.delete(`${API_URL}/users/${username}//${id}`);
+//  deleteTodo(username, id){
+  deleteTodo(id){
+  return this.http.delete(`${API_URL}/clinic/${id}`);
   }
 
   //retrieveTodo(username, id){
@@ -29,6 +30,7 @@ export class TodoDataService {
 
 //  updateTodo(username, id, todo){
   updateTodo(id, todo){
+    console.log(`update ${id}`)
 return this.http.put(
 //          `${API_URL}/users/${username}/todos/${id}`
 `${API_URL}/clinic/${id}`  
@@ -37,6 +39,8 @@ return this.http.put(
 
 //  createTodo(username, todo){
     createTodo(todo){
+      console.log(`Clinic created`)
+      console.log(todo)
     return this.http.post(
              // `${API_URL}/users/${username}/todos`
              `${API_URL}/clinic/add`

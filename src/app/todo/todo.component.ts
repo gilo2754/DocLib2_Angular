@@ -3,6 +3,8 @@ import { TodoDataService } from './../service/data/todo-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../list-todos/list-todos.component';
 
+const OBJECT ='clinic';
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -23,7 +25,7 @@ export class TodoComponent implements OnInit {
     
     this.id = this.route.snapshot.params['id'];
     
-    this.todo = new Todo(this.id,'','','');
+    this.todo = new Todo(this.id,'New clinic','1234','IN_REVIEW');
     
     if(this.id!=-1) {
       this.todoService.retrieveTodo(this.id)
@@ -34,23 +36,30 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo() {
-    if(this.id === -1) {
-      this.todoService.createTodo(this.todo)
+    // Compare same data types 
+    if(Number(this.id) === -1) {
+    // Taking the id out, because this will auto. generated
+      const createdTodo = this.todo;
+      delete createdTodo.id;
+     this.todoService.createTodo(createdTodo)
           .subscribe (
             data => {
               console.log(data)
-              this.router.navigate(['clinic', 'add'])
+              console.log("CREATING")
+
+              this.router.navigate([OBJECT, 'add'])
             }
           )
     } else {
       this.todoService.updateTodo(this.id, this.todo)
           .subscribe (
             data => {
+              console.log("UPDATING")
               console.log(data)
-              this.router.navigate(['clinic',this.id])
+              this.router.navigate([OBJECT.concat('s')]);//,this.id])
             }
           )
     }
-  }
+}
 
 }

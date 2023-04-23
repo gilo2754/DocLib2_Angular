@@ -58,10 +58,10 @@ export class ListTodosComponent implements OnInit {
 
   deleteTodo(id) {
     console.log(`delete todo ${id}` )
-    this.todoService.deleteTodo('in28minutes', id).subscribe (
+    this.todoService.deleteTodo(id).subscribe (
       response => {
         console.log(response);
-        this.message = `Delete of Todo ${id} Successful!`;
+        this.message = `Delete of Clinic ${id} Successful!`;
         this.refreshTodos();
       }
     )
@@ -73,6 +73,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   addTodo() {
-    this.router.navigate(['clinic', 'add'])
+    console.log(`New clinic is going to be created`)
+    this.router.navigate(['clinic', '-1'])
   }
 }

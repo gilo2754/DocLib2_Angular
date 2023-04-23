@@ -14,9 +14,9 @@ export class ClinicDataService {
     private http:HttpClient
   ) { }
 
-  retrieveAllClinics(username) {
+//  retrieveAllClinics(username)
+  retrieveAllClinics() {
     return this.http.get<Clinic[]>(`${API_URL}/${OBJECT}s`);
-    //console.log("Execute Hello World Bean Service")
   }
 
   // deleteTodo(username, id){
@@ -31,7 +31,7 @@ export class ClinicDataService {
   }
 
 //  updateTodo(username, id, todo){
-  updateClinic(id, clinic ){
+  updateClinic(id, clinic){
     console.log(`update ${id}`)
 return this.http.put(
 //          `${API_URL}/users/${username}/todos/${id}`
@@ -41,11 +41,11 @@ return this.http.put(
 
 //  createTodo(username, todo){
     createClinic(clinic){
-      console.log(`Clinic created`)
+      console.log(`${OBJECT} created`)
       console.log(clinic)
     return this.http.post(
              // `${API_URL}/users/${username}/todos`
-             `${API_URL}/clinic/add`
+             `${API_URL}/${OBJECT}/add`
                 , clinic);
   }
 

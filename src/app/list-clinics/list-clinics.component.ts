@@ -38,7 +38,7 @@ export class ListClinicsComponent implements OnInit {
   }
 
   refreshClinics(){
-    this.clinicService.retrieveAllClinics('in28minutes').subscribe(
+    this.clinicService.retrieveAllClinics().subscribe(
       response => {
         console.log(response);
         this.clinics = response;

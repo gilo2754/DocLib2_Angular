@@ -1,6 +1,6 @@
 import { TodoDataService } from './../service/data/todo-data.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export class Todo {
   constructor(
@@ -19,31 +19,19 @@ export class Todo {
   styleUrls: ['./list-todos.component.css']
 })
 export class ListTodosComponent implements OnInit {
-
+  id:number
   todos: Todo[]
-
   message: string
-
-  // = [
-  //   new Todo(1, 'Learn to Dance', false, new Date()),
-  //   new Todo(2, 'Become an Expert at Angular', false, new Date()),
-  //   new Todo(3, 'Visit India', false, new Date())
-  //   // {id : 1, description : },
-  //   // {id : 2, description : ''},
-  //   // {id : 3, description : 'Visit India'}
-  // ]
-
-  // todo = {
-  //     id : 1,
-  //     description: 'Learn to Dance'
-  // }
 
   constructor(
     private todoService:TodoDataService,
-    private router : Router
+    private router : Router,
+    private route: ActivatedRoute
+
   ) { }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
     this.refreshTodos();
   }
 
@@ -57,12 +45,17 @@ export class ListTodosComponent implements OnInit {
   }
 
   deleteTodo(id) {
-    console.log(`delete todo ${id}` )
+    //TODO: add verification before deleting
+    console.log(`delete todo ${id}`)
     this.todoService.deleteTodo(id).subscribe (
       response => {
         console.log(response);
         this.message = `Delete of Clinic ${id} Successful!`;
         this.refreshTodos();
+      },
+      error => {
+        console.log(error);
+        this.message = error.error;
       }
     )
   }

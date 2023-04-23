@@ -17,15 +17,15 @@ export class TodoDataService {
     //console.log("Execute Hello World Bean Service")
   }
 
-//  deleteTodo(username, id){
+  // deleteTodo(username, id){
   deleteTodo(id){
-  return this.http.delete(`${API_URL}/clinic/${id}`);
+    return this.http.delete(`${API_URL}/clinic/${id}`);
   }
 
   //retrieveTodo(username, id){
     retrieveTodo(id){ 
   //return this.http.get<Todo>(`${API_URL}/users/${username}/todos/${id}`);
-    return this.http.get<Todo>(`${API_URL}/clinic/${id}`);
+      return this.http.get<Todo>(`${API_URL}/clinic/${id}`);
   }
 
 //  updateTodo(username, id, todo){

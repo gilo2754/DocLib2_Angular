@@ -46,8 +46,7 @@ export class TodoComponent implements OnInit {
             data => {
               console.log(data)
               console.log("CREATING")
-
-              this.router.navigate([OBJECT, 'add'])
+              this.router.navigate([OBJECT.concat('s')])
             }
           )
     } else {

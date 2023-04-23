@@ -1,22 +1,22 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { TodoDataService } from './../service/data/todo-data.service';
+import { ClinicDataService } from '../service/data/clinic-data.service';
 import { Component, OnInit } from '@angular/core';
-import { Todo } from '../list-todos/list-todos.component';
+import { Clinic } from '../list-clinics/list-clinics.component';
 
 const OBJECT ='clinic';
 
 @Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  selector: 'app-clinic ',
+  templateUrl: './clinic.component.html',
+  styleUrls: ['./clinic.component.css']
 })
-export class TodoComponent implements OnInit {
+export class ClinicComponent implements OnInit {
 
   id:number
-  todo: Todo
+  clinic: Clinic
 
   constructor(
-    private todoService: TodoDataService,
+    private clinicService: ClinicDataService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -25,23 +25,23 @@ export class TodoComponent implements OnInit {
     
     this.id = this.route.snapshot.params['id'];
     
-    this.todo = new Todo(this.id,'New clinic','1234','IN_REVIEW');
+    this.clinic = new Clinic(this.id,'New clinic','1234','IN_REVIEW');
     
     if(this.id!=-1) {
-      this.todoService.retrieveTodo(this.id)
+      this.clinicService.retrieveClinic(this.id)
           .subscribe (
-            data => this.todo = data
+            data => this.clinic = data
           )
     }
   }
 
-  saveTodo() {
+  saveClinic() {
     // Compare same data types 
     if(Number(this.id) === -1) {
     // Taking the id out, because this will auto. generated
-      const createdTodo = this.todo;
-      delete createdTodo.id;
-     this.todoService.createTodo(createdTodo)
+      const createdClinic = this.clinic;
+      delete createdClinic.id;
+     this.clinicService.createClinic(createdClinic)
           .subscribe (
             data => {
               console.log(data)
@@ -50,7 +50,7 @@ export class TodoComponent implements OnInit {
             }
           )
     } else {
-      this.todoService.updateTodo(this.id, this.todo)
+      this.clinicService.updateClinic(this.id, this.clinic)
           .subscribe (
             data => {
               console.log("UPDATING")

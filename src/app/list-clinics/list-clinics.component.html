@@ -1,0 +1,34 @@
+<h1> Clinics </h1>
+
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Tel.</th>
+        <th>clinic_state</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--   for (Todo todo: todos) {  -->
+              <tr *ngFor="let clinic of clinics">
+                <td>{{clinic.clinic_description}}</td>
+                <td>{{clinic.clinic_phone_number}}</td>
+                <td>{{clinic.clinic_state}}</td>
+                <td><button (click)="updateClinic(clinic.clinic_id)" class="btn btn-success">Update</button></td>
+                <td><button (click)="deleteClinic(clinic.clinic_id)" class="btn btn-warning">Delete</button></td>
+              </tr>
+      <!-- } -->
+    </tbody>
+
+  </table>
+
+  <div class="row">
+      <button (click)="addClinic()" class="btn btn-success">Add</button>
+  </div>
+
+</div>

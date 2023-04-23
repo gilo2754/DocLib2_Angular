@@ -1,8 +1,10 @@
-import { TodoDataService } from './../service/data/todo-data.service';
+import { ClinicDataService } from '../service/data/clinic-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-export class Todo {
+const OBJECT ='clinic';
+
+export class Clinic {
   constructor(
     public id: number,
     public clinic_description: string,
@@ -14,17 +16,17 @@ export class Todo {
 }
 
 @Component({
-  selector: 'app-list-todos',
-  templateUrl: './list-todos.component.html',
-  styleUrls: ['./list-todos.component.css']
+  selector: 'app-list-clinics',
+  templateUrl: './list-clinics.component.html',
+  styleUrls: ['./list-clinics.component.css']
 })
-export class ListTodosComponent implements OnInit {
+export class ListClinicsComponent implements OnInit {
   id:number
-  todos: Todo[]
+  clinics: Clinic[]
   message: string
 
   constructor(
-    private todoService:TodoDataService,
+    private clinicService:ClinicDataService,
     private router : Router,
     private route: ActivatedRoute
 
@@ -32,26 +34,26 @@ export class ListTodosComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.refreshTodos();
+    this.refreshClinics();
   }
 
-  refreshTodos(){
-    this.todoService.retrieveAllTodos('in28minutes').subscribe(
+  refreshClinics(){
+    this.clinicService.retrieveAllClinics('in28minutes').subscribe(
       response => {
         console.log(response);
-        this.todos = response;
+        this.clinics = response;
       }
     )
   }
 
-  deleteTodo(id) {
+  deleteClinic(id) {
     //TODO: add verification before deleting
-    console.log(`delete todo ${id}`)
-    this.todoService.deleteTodo(id).subscribe (
+    console.log(`delete ${OBJECT} ${id}`)
+    this.clinicService.deleteClinic(id).subscribe (
       response => {
         console.log(response);
-        this.message = `Delete of Clinic ${id} Successful!`;
-        this.refreshTodos();
+        this.message = `Delete of ${OBJECT} ${id} Successful!`;
+        this.refreshClinics();
       },
       error => {
         console.log(error);
@@ -60,13 +62,13 @@ export class ListTodosComponent implements OnInit {
     )
   }
 
-  updateTodo(id) {
+  updateClinic(id) {
     console.log(`update ${id}`)
     this.router.navigate(['clinic',id])
   }
 
-  addTodo() {
-    console.log(`New clinic is going to be created`)
+  addClinic() {
+    console.log(`New ${OBJECT} is going to be created`)
     this.router.navigate(['clinic', '-1'])
   }
 }

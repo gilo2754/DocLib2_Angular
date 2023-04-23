@@ -1,50 +1,52 @@
-import { API_URL } from './../../app.constants';
+import { API_URL } from '../../app.constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Todo } from '../../list-todos/list-todos.component';
+import { Clinic } from '../../list-clinics/list-clinics.component';
+
+const OBJECT ='clinic';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodoDataService {
+export class ClinicDataService {
 
   constructor(
     private http:HttpClient
   ) { }
 
-  retrieveAllTodos(username) {
-    return this.http.get<Todo[]>(`${API_URL}/clinics`);
+  retrieveAllClinics(username) {
+    return this.http.get<Clinic[]>(`${API_URL}/${OBJECT}s`);
     //console.log("Execute Hello World Bean Service")
   }
 
   // deleteTodo(username, id){
-  deleteTodo(id){
-    return this.http.delete(`${API_URL}/clinic/${id}`);
+  deleteClinic(id){
+    return this.http.delete(`${API_URL}/${OBJECT}/${id}`);
   }
 
   //retrieveTodo(username, id){
-    retrieveTodo(id){ 
+    retrieveClinic(id){ 
   //return this.http.get<Todo>(`${API_URL}/users/${username}/todos/${id}`);
-      return this.http.get<Todo>(`${API_URL}/clinic/${id}`);
+      return this.http.get<Clinic>(`${API_URL}/${OBJECT}/${id}`);
   }
 
 //  updateTodo(username, id, todo){
-  updateTodo(id, todo){
+  updateClinic(id, clinic ){
     console.log(`update ${id}`)
 return this.http.put(
 //          `${API_URL}/users/${username}/todos/${id}`
-`${API_URL}/clinic/${id}`  
-, todo);
+`${API_URL}/${OBJECT}/${id}`  
+, clinic );
   }
 
 //  createTodo(username, todo){
-    createTodo(todo){
+    createClinic(clinic){
       console.log(`Clinic created`)
-      console.log(todo)
+      console.log(clinic)
     return this.http.post(
              // `${API_URL}/users/${username}/todos`
              `${API_URL}/clinic/add`
-                , todo);
+                , clinic);
   }
 
 }

@@ -1,14 +1,14 @@
-<H1>Todo</H1>
+<H1>Clinic</H1>
 
 <div class="container">
-  <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
-  <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter atleast 5 characters in Description</div>
+  <div class="alert alert-warning" *ngIf="clinicForm.dirty && clinicForm.invalid">Enter valid values</div>
+  <div class="alert alert-warning" *ngIf="clinicForm.dirty && description.invalid">Enter atleast 5 characters in Description</div>
   
-  <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+  <form (ngSubmit)="!clinicForm.invalid && saveClinic()" #clinicForm="ngForm">
     <fieldset class="form-group">
       <label>Description</label>
       <input type="text" #description="ngModel" 
-            [(ngModel)]="todo.clinic_description" class="form-control" 
+            [(ngModel)]="clinic.clinic_description" class="form-control" 
                 name="description" required="required" minlength="5"
                 placeholder="Test clinic">
     </fieldset>
@@ -16,14 +16,14 @@
     <fieldset class="form-group">
         <label>clinic_phone_number</label>
         <input type="text" #clinic_phone_number="ngModel"
-        [ngModel]="todo.clinic_phone_number"
-        (ngModelChange)="todo.clinic_phone_number = $event"
+        [ngModel]="clinic.clinic_phone_number"
+        (ngModelChange)="clinic.clinic_phone_number = $event"
         class="form-control" name="clinic_phone_number" required="required" maxlength="20"
         placeholder="012345" >
     </fieldset>
     <label>
       State:
-      <select [(ngModel)]="todo.clinic_state" name="clinic_state">
+      <select [(ngModel)]="clinic.clinic_state" name="clinic_state">
         <option *ngFor="let state of  ['ACTIVE','INACTIVE','IN_REVIEW']" [value]="state">{{state}}</option>
       </select>
     </label>

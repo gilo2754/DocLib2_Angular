@@ -1,7 +1,7 @@
-import { TodoComponent } from './todo/todo.component';
+import { ClinicComponent } from './clinic/clinic.component';
 import { RouteGuardService } from './service/route-guard.service';
 import { LogoutComponent } from './logout/logout.component';
-import { ListTodosComponent } from './list-todos/list-todos.component';
+import { ListClinicsComponent } from './list-clinics/list-clinics.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: '', component: LoginComponent  },//canActivate, RouteGuardService
   { path: 'login', component: LoginComponent },
   { path: 'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
-  { path: 'clinics', component: ListTodosComponent, canActivate:[RouteGuardService] },
+  { path: 'clinics', component: ListClinicsComponent, canActivate:[RouteGuardService] },
   { path: 'logout', component: LogoutComponent, canActivate:[RouteGuardService] },
-  { path: 'clinic/:id', component: TodoComponent, canActivate:[RouteGuardService] },
+  { path: 'clinic/:id', component: ClinicComponent, canActivate:[RouteGuardService] },
 
   { path: '**', component: ErrorComponent }
 ];

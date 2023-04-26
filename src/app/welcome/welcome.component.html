@@ -1,11 +1,22 @@
 <H1>Welcome!</H1>
 
 <div class="container">
-  Welcome {{name}}. You can manage your clinics <a routerLink="/clinics">here</a>
+  Welcome {{name}}. Go to ALL clinics <a routerLink="/clinics">here</a>
 </div>
 
+<div class="search-container">
+  <form>
+    <input type="text" id="especialidad" name="especialidad" placeholder="Ingrese especialidad">
+
+    <input type="text" id="lugar" name="lugar" placeholder="Ingrese lugar">
+
+    <button type="submit">Buscar</button>
+  </form>
+</div>
+
+
 <div class="container">
-  Click here to get a customized welcome message 
+  Need? Click here to get a customized welcome message 
   <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message</button>
 </div>
 

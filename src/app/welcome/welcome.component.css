@@ -1,0 +1,29 @@
+.search-container {
+    text-align: center;
+  }
+  
+  form {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  input[type="text"], button {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+  }
+  
+  input[type="text"] {
+    width: 300px;
+    max-width: 100%;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  

@@ -24,9 +24,10 @@
 
     <label>
       Speciality:
-      <select [(ngModel)]="clinic.speciality" name="speciality">
-        <option *ngFor="let speciality of  ['PEDIATRIA','UROLOGIA', 'NEUROLOGIA', 'OFTALMOLOGIA',
-        'ONCOLOGIA']" [value]="speciality">{{speciality}}</option>
+        <select [(ngModel)]="clinic.speciality" name="speciality" id="speciality">
+FIXME
+        <option *ngFor="let option of specialities" [value]="option">{{option}}</option>
+
       </select>
     </label>
 
@@ -39,4 +40,5 @@
     
     <button type="submit" class="btn btn-success">Save</button>
   </form>  
+
 </div>

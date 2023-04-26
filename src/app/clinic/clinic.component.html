@@ -21,6 +21,15 @@
         class="form-control" name="clinic_phone_number" required="required" maxlength="20"
         placeholder="012345" >
     </fieldset>
+
+    <label>
+      Speciality:
+      <select [(ngModel)]="clinic.speciality" name="speciality">
+        <option *ngFor="let speciality of  ['PEDIATRIA','UROLOGIA', 'NEUROLOGIA', 'OFTALMOLOGIA',
+        'ONCOLOGIA']" [value]="speciality">{{speciality}}</option>
+      </select>
+    </label>
+
     <label>
       State:
       <select [(ngModel)]="clinic.clinic_state" name="clinic_state">

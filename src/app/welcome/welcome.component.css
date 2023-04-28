@@ -27,3 +27,13 @@
     color: white;
   }
   
+  .speciality:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+
+  .municipality:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+  

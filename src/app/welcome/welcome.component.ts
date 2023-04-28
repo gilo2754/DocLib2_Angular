@@ -1,34 +1,29 @@
 import { WelcomeDataService } from './../service/data/welcome-data.service';
 import { ActivatedRoute } from '@angular/router';
-//package com.in28minutes.springboot.web;
+import { Specialities } from '../enums/specialities.enum';
+import { Municipalities } from '../enums/municipies.enum';
 
-//import org.springframework.boot.SpringApplication;
+
 import { Component, OnInit } from '@angular/core';//'./app.component';
 //import { AppComponent } from '../app.component';
 
-//@ComponentScan(
-//      value = "com.in28minutes.springboot.web")
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
 
-//public class SpringBootFirstWebApplication implements SomeInterface{
 export class WelcomeComponent implements OnInit {
 
   message = 'Some Welcome Message'
   welcomeMessageFromService:string
   name = ''
-  //String message = "Some Welcome Message"
-  
-  //public SpringBootFirstWebApplication() {	
+  specialities = Object.values(Specialities);
+  municipalities = Object.values(Municipalities);
 
-  //ActivatedRoute
   constructor(
     private route:ActivatedRoute,
     private service:WelcomeDataService) { 
-
   }
 
   // void init() {
@@ -40,22 +35,62 @@ export class WelcomeComponent implements OnInit {
     
   }
 
-  getWelcomeMessage() {
-    //console.log(this.service.executeHelloWorldBeanService());
-    
+  filteredSpecialities: string[] = this.specialities.slice();
+  filteredMunicipalities: string[] = this.municipalities.slice();
+
+/*
+  onInputChange(text: string) {
+    this.filteredSpecialities = this.specialities.filter(speciality => speciality.toLowerCase().includes(text.toLowerCase()));
+    this.filteredMunicipalities = this.municipalities.filter(municipality => municipality.toLowerCase().includes(text.toLowerCase()));
+  }
+*/
+  onInputChange(text: string, field: string) {
+    const lowerText = text.toLowerCase();
+    if (field === 'speciality') {
+      this.filteredSpecialities = this.specialities.reduce((acc, curr) => {
+        if (curr.toLowerCase().includes(lowerText)) {
+          acc.push(curr);
+        }
+        return acc;
+      }, []);
+    } else if (field === 'municipality') {
+      this.filteredMunicipalities = this.municipalities.reduce((acc, curr) => {
+        if (curr.toLowerCase().includes(lowerText)) {
+          acc.push(curr);
+        }
+        return acc;
+      }, []);
+    }
+  }
+  
+
+  onSpecialityClick(speciality: string) {
+    (document.getElementById('speciality') as HTMLInputElement).value = speciality;
+    this.filteredSpecialities = [];
+  }
+
+  onMunicipalityClick(municipality: string) {
+    (document.getElementById('municipality') as HTMLInputElement).value = municipality;
+    this.filteredMunicipalities = [];
+  }
+  
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+
+    const speciality = (event.target as HTMLFormElement).speciality.value;
+    const municipality = (event.target as HTMLFormElement).municipality.value;
+  }
+
+  getWelcomeMessage() {  
     this.service.executeHelloWorldBeanService().subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
     );
     
-    //console.log('last line of getWelcomeMessage')
-
-    //console.log("get welcome message");
   }
 
-  getWelcomeMessageWithParameter() {
-    //console.log(this.service.executeHelloWorldBeanService());
-    
+  getWelcomeMessageWithParameter() {  
     this.service.executeHelloWorldServiceWithPathVariable(this.name).subscribe(
       response => this.handleSuccessfulResponse(response),
       error => this.handleErrorResponse(error)
@@ -81,10 +116,3 @@ export class WelcomeComponent implements OnInit {
   }
 }
 
-export class Class1 {
-
-}
-
-export class Class2 {
-  
-}

@@ -6,15 +6,33 @@
 
 <div class="search-container">
   <form>
-    <input type="text" id="especialidad" name="especialidad" placeholder="Ingrese especialidad">
 
-    <input type="text" id="lugar" name="lugar" placeholder="Ingrese lugar">
+    <input id="speciality" placeholder="Ingrese especialidad" type="text" (input)="onInputChange($event.target.value, 'speciality')" />
+
+    <input type="text" id="municipality" name="municipality" placeholder="Ingrese municipality" (input)="onInputChange($event.target.value, 'municipality')" />
 
     <button type="submit">Buscar</button>
   </form>
 </div>
 
 
+<div>
+
+  <div *ngIf="filteredSpecialities.length > 0">
+    <ul>
+      <li *ngFor="let speciality of filteredSpecialities" class="speciality" (click)="onSpecialityClick(speciality)">{{speciality}}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="filteredMunicipalities.length > 0">
+    <ul>
+      <li *ngFor="let municipality of filteredMunicipalities" class="municipality" (click)="onMunicipalityClick (municipality)">{{municipality}}</li>
+    </ul>
+  </div>
+</div>
+
+
+<!--
 <div class="container">
   Need? Click here to get a customized welcome message 
   <button (click)="getWelcomeMessageWithParameter()" class="btn btn-success">Get Welcome Message</button>
@@ -24,3 +42,4 @@
     <H2>Your Customized Welcome Message</H2>
     {{welcomeMessageFromService}}
   </div>
+  -->

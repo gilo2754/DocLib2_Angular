@@ -11,7 +11,8 @@
 
     <input type="text" id="municipality" name="municipality" placeholder="Ingrese municipality" (input)="onInputChange($event.target.value, 'municipality')" />
 
-    <button type="submit">Buscar</button>
+    <button (click)="searchClinicsBySpeciality(clinic.speciality)" class="btn btn-success">Buscar</button>
+
   </form>
 </div>
 

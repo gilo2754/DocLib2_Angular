@@ -22,14 +22,16 @@
         placeholder="012345" >
     </fieldset>
 
+    
+
     <label>
       Speciality:
-        <select [(ngModel)]="clinic.speciality" name="speciality" id="speciality">
-FIXME
+      <select [(ngModel)]="clinic.speciality" name="speciality" id="speciality">
         <option *ngFor="let option of specialities" [value]="option">{{option}}</option>
-
       </select>
     </label>
+
+    
 
     <label>
       State:

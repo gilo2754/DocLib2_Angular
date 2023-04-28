@@ -1,10 +1,21 @@
 <h1> Clinics </h1>
 
-<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+<div class="alert alert-warning" *ngIf='message'>{{message}}</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <label for="speciality">Filter by Speciality:</label>
+    <select class="form-control" [(ngModel)]="selectedSpeciality" name="selectedSpeciality" id="selectedSpeciality">
+      <option *ngFor="let option of specialities" [value]="option">{{option}}</option>
+
+    </select>
+  </div>
+</div>
+
 
 <div class="container">
   <div class="row">
-    <ng-container *ngFor="let clinic of clinics">
+    <ng-container *ngFor="let clinic of clinics | specialityFilter: selectedSpeciality">
       <div class="col-md-4">
         <div class="card">
           <div class="card-body">
@@ -18,6 +29,7 @@
         </div>
       </div>
     </ng-container>
+    
   </div>
 
   <div class="row mt-3">

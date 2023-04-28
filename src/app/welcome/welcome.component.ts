@@ -2,6 +2,7 @@ import { WelcomeDataService } from './../service/data/welcome-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Specialities } from '../enums/specialities.enum';
 import { Municipalities } from '../enums/municipies.enum';
+import { ClinicDataService } from '../service/data/clinic-data.service';
 
 
 import { Component, OnInit } from '@angular/core';//'./app.component';
@@ -23,7 +24,9 @@ export class WelcomeComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
-    private service:WelcomeDataService) { 
+    private service:WelcomeDataService,
+    private clinicService:ClinicDataService,
+) { 
   }
 
   // void init() {
@@ -44,6 +47,19 @@ export class WelcomeComponent implements OnInit {
     this.filteredMunicipalities = this.municipalities.filter(municipality => municipality.toLowerCase().includes(text.toLowerCase()));
   }
 */
+searchClinicsBySpeciality(speciality: string) {
+  this.clinicService.getClinicsBySpeciality(speciality).subscribe(
+    response => {
+      // do something with the retrieved clinics
+      console.log(response);
+    },
+    error => {
+      // handle error
+      console.log(error);
+    }
+  );
+}
+
   onInputChange(text: string, field: string) {
     const lowerText = text.toLowerCase();
     if (field === 'speciality') {

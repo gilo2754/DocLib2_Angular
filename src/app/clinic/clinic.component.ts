@@ -35,6 +35,7 @@ export class ClinicComponent implements OnInit {
           .subscribe (
             data => this.clinic = data
           )
+
     }
   }
 

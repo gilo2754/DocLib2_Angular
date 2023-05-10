@@ -1,2 +1,25 @@
-node_modules
-dist/
+# Dependency directories
+/node_modules
+/bower_components
+
+# Compiled output
+/dist
+/tmp
+
+# Logs and debugging
+/logs
+/coverage
+/debug.log
+/debug/
+
+# Environment variables
+.env
+
+# IDE files
+/.idea
+/.vscode
+
+# Miscellaneous
+*.swp
+*.bak
+.DS_Store

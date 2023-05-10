@@ -14,6 +14,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ClinicComponent } from './clinic/clinic.component';
+import { FilterPipe } from './pipes/speciality-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ClinicComponent } from './clinic/clinic.component';
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    ClinicComponent
+    ClinicComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

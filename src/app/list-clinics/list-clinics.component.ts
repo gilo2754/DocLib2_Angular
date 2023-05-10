@@ -1,6 +1,7 @@
 import { ClinicDataService } from '../service/data/clinic-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Specialities } from '../enums/specialities.enum';
 
 const OBJECT ='clinic';
 
@@ -24,7 +25,11 @@ export class Clinic {
 export class ListClinicsComponent implements OnInit {
   id:number
   clinics: Clinic[]
+  specialities = Object.values(Specialities);
+//  specialities: string[];
+  selectedSpeciality: string = '';
   message: string
+
 
   constructor(
     private clinicService:ClinicDataService,
@@ -39,12 +44,21 @@ export class ListClinicsComponent implements OnInit {
   }
 
   refreshClinics(){
-    this.clinicService.retrieveAllClinics().subscribe(
+
+/*    this.clinicService.retrieveAllClinics().subscribe(
       response => {
         console.log(response);
         this.clinics = response;
       }
     )
+    */
+    this.clinicService.retrieveAllClinics().subscribe(clinics => {
+      this.clinics = clinics;
+      this.specialities = [...new Set(clinics.map(clinic => clinic.speciality))];
+    //  this.specialities = [...new Set([...Object.values(Specialities)])];
+      // FIXME: 
+  
+});
   }
 
   deleteClinic(id) {
@@ -72,4 +86,6 @@ export class ListClinicsComponent implements OnInit {
     console.log(`New ${OBJECT} is going to be created`)
     this.router.navigate(['clinic', '-1'])
   }
+
+ 
 }

@@ -10,9 +10,15 @@ const OBJECT ='clinic';
 })
 export class ClinicDataService {
 
+  
+
   constructor(
     private http:HttpClient
   ) { }
+
+  getClinicsBySpeciality(speciality: string) {
+    return this.http.get<Clinic[]>(`${API_URL}/${speciality}`);
+  }
 
 //  retrieveAllClinics(username)
   retrieveAllClinics() {

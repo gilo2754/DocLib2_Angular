@@ -1,3 +1,4 @@
+//Local Specialities; there are a endpoint for the Specialities 
 export enum Specialities {
   CARDIOLOGIA = 'CARDIOLOGIA',
   DERMATOLOGIA = 'DERMATOLOGIA',
@@ -8,6 +9,6 @@ export enum Specialities {
   PEDIATRIA = 'PEDIATRIA',
   PSIQUIATRIA = 'PSIQUIATRIA',
   TRAUMATOLOGIA = 'TRAUMATOLOGIA',
-  UROLOGIA = 'UROLOGIA'
+//  UROLOGIA = 'UROLOGIA'
 }
 

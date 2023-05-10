@@ -3,10 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Specialities } from '../enums/specialities.enum';
 import { Municipalities } from '../enums/municipies.enum';
 import { ClinicDataService } from '../service/data/clinic-data.service';
-
-
-import { Component, OnInit } from '@angular/core';//'./app.component';
-//import { AppComponent } from '../app.component';
+//import { speciality } from '../speciality/speciality-interface';
+import { SpecialityService } from '../service/data/speciality-data.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
@@ -19,13 +18,14 @@ export class WelcomeComponent implements OnInit {
   message = 'Some Welcome Message'
   welcomeMessageFromService:string
   name = ''
-  specialities = Object.values(Specialities);
   municipalities = Object.values(Municipalities);
+  specialities= Object.values(this.getSpecialities() || Specialities);
 
   constructor(
     private route:ActivatedRoute,
     private service:WelcomeDataService,
     private clinicService:ClinicDataService,
+    private specialityService: SpecialityService,
 ) { 
   }
 
@@ -35,18 +35,20 @@ export class WelcomeComponent implements OnInit {
     //console.log(this.message)
     // console.log(this.route.snapshot.params['name'])
     this.name = this.route.snapshot.params['name'];
-    
+    this.getSpecialities();
+    console.log(this.getSpecialities());
+
+  }
+  getSpecialities(): string[] {
+    this.specialityService.getSpecialities()
+      .subscribe(specialities => this.specialities = specialities);
+      return this.specialities;
+
   }
 
-  filteredSpecialities: string[] = this.specialities.slice();
-  filteredMunicipalities: string[] = this.municipalities.slice();
+filteredSpecialities: string[] = this.specialities.slice();
+filteredMunicipalities: string[] = this.municipalities.slice();
 
-/*
-  onInputChange(text: string) {
-    this.filteredSpecialities = this.specialities.filter(speciality => speciality.toLowerCase().includes(text.toLowerCase()));
-    this.filteredMunicipalities = this.municipalities.filter(municipality => municipality.toLowerCase().includes(text.toLowerCase()));
-  }
-*/
 searchClinicsBySpeciality(speciality: string) {
   this.clinicService.getClinicsBySpeciality(speciality).subscribe(
     response => {

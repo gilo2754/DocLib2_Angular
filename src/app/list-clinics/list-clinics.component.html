@@ -23,8 +23,10 @@
             <p class="card-text">Phone: {{clinic.clinic_phone_number}}</p>
             <p class="card-text">Speciality: {{clinic.speciality}}</p>
             <p class="card-text">State: {{clinic.clinic_state}}</p>
-            <button (click)="updateClinic(clinic.clinic_id)" class="btn btn-success">Update</button>
-            <button (click)="deleteClinic(clinic.clinic_id)" class="btn btn-warning">Delete</button>
+            <button (click)="makeAppointment(clinic.clinic_id)" class="btn btn-success">Crear cita</button>
+
+            <button (click)="updateClinic(clinic.clinic_id)" class="btn btn-success">Editar</button>
+            <button (click)="deleteClinic(clinic.clinic_id)" class="btn btn-warning">Borrar</button>
           </div>
         </div>
       </div>

@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
   //Angular.giveMeRouter
   //Dependency Injection
   constructor(private router: Router,
-    private hardcodedAuthenticationService: HardcodedAuthenticationService,
+    //private hardcodedAuthenticationService: HardcodedAuthenticationService,
     private basicAuthenticationService: BasicAuthenticationService) { }
 
   ngOnInit() {
   }
-
+/*
   handleLogin() {
     // console.log(this.username);
     //if(this.username==="in28minutes" && this.password === 'dummy') {
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.invalidLogin = true
     }
   }
-
+*/
   handleBasicAuthLogin() {
     // console.log(this.username);
     //if(this.username==="in28minutes" && this.password === 'dummy') {
@@ -47,16 +47,16 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['welcome', this.username])
             this.invalidLogin = false      
           },
-         /* error => {
+          error => {
             console.log(error)
             this.invalidLogin = true
-          */
+          /*
               data => {
                 console.log(data)
                 this.router.navigate(['welcome', this.username])
                 this.invalidLogin = false      
-              }
-         // }
+              }*/
+          }
         )
   }
 

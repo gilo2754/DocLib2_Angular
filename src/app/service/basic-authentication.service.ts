@@ -22,7 +22,7 @@ export class BasicAuthenticationService {
       })
 
     return this.http.get<AuthenticationBean>(
-      `${API_URL}/basicauth`,
+      `${API_URL}/login`,
       {headers}).pipe(
         map(
           data => {

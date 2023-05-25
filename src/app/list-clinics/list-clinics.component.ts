@@ -25,7 +25,7 @@ export class Clinic {
 export class ListClinicsComponent implements OnInit {
   id:number
   clinics: Clinic[]
-  specialities = Object.values(Specialities);
+  specialities: string [] = Object.values(Specialities);
 //  specialities: string[];
   selectedSpeciality: string = '';
   message: string

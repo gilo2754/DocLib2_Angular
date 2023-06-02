@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent  },//canActivate, RouteGuardService
   { path: 'login', component: LoginComponent },
   { path: 'welcome/:name', component: WelcomeComponent, canActivate:[RouteGuardService]},
-  { path: 'clinics', component: ListClinicsComponent, canActivate:[RouteGuardService] },
+  { path: 'clinics', component: ListClinicsComponent},
   { path: 'logout', component: LogoutComponent, canActivate:[RouteGuardService] },
   { path: 'clinic/:id', component: ClinicComponent, canActivate:[RouteGuardService] },
 

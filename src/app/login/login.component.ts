@@ -1,7 +1,8 @@
-import { BasicAuthenticationService } from './../service/basic-authentication.service';
-import { HardcodedAuthenticationService } from './../service/hardcoded-authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtAuthenticationService } from '../service/JWT/jwt-authentication.service';
+//import { ServerStatusComponent } from '../service/server/server.component';
+import { AuthenticationRequest } from '../service/JWT/jwt-request.interface';
 
 @Component({
   selector: 'app-login',
@@ -9,55 +10,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  username = 'admin';
+  password = 'admin';
+  errorMessage = 'Invalid Credentials, sorry';
+  invalidLogin = false;
 
-  username = 'admin'
-  password = 'admin'
-  errorMessage = 'Invalid Credentials'
-  invalidLogin = false
+  constructor(
+    private router: Router,
+    private authService: JwtAuthenticationService,
+   // private serverStatusComponent: ServerStatusComponent
 
-  //Router
-  //Angular.giveMeRouter
-  //Dependency Injection
-  constructor(private router: Router,
-    //private hardcodedAuthenticationService: HardcodedAuthenticationService,
-    private basicAuthenticationService: BasicAuthenticationService) { }
+  ) { }
 
   ngOnInit() {
   }
-/*
+
+  // This is not used in the Auth with JWT
+  /*
   handleLogin() {
-    // console.log(this.username);
-    //if(this.username==="in28minutes" && this.password === 'dummy') {
-    if(this.hardcodedAuthenticationService.authenticate(this.username, this.password)) {
-      //Redirect to Welcome Page
-      this.router.navigate(['welcome', this.username])
-      this.invalidLogin = false
+    if (this.username === 'admin' && this.password === 'admin') {
+    //  this.serverStatusComponent.checkServerStatus(); // Call checkServerStatus()
+      this.router.navigate(['welcome', this.username]);
+      this.invalidLogin = false;
     } else {
-      this.invalidLogin = true
+      this.invalidLogin = true;
     }
   }
-*/
-  handleBasicAuthLogin() {
-    // console.log(this.username);
-    //if(this.username==="in28minutes" && this.password === 'dummy') {
-    this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
-        .subscribe(
-          data => {
-            console.log(data)
-            this.router.navigate(['welcome', this.username])
-            this.invalidLogin = false      
-          },
-          error => {
-            console.log(error)
-            this.invalidLogin = true
-          /*
-              data => {
-                console.log(data)
-                this.router.navigate(['welcome', this.username])
-                this.invalidLogin = false      
-              }*/
-          }
-        )
-  }
+  */
 
+  handleJWTAuthLogin() {
+    const request: AuthenticationRequest = {
+      email: this.username,
+      password: this.password
+    };
+  
+    this.authService.executeJWTAuthenticationService(request)
+      .subscribe(
+        response => {
+          this.authService.setAuthenticationToken(response.token);
+          this.router.navigate(['welcome', this.username]);
+          this.invalidLogin = false;
+          console.log(this.username);
+        },
+        error => {
+          console.log(error);
+
+          this.invalidLogin = true;
+        }
+      );
+  }
+  
 }

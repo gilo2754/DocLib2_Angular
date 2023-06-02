@@ -14,14 +14,15 @@ export class BasicAuthenticationService {
   constructor(private http: HttpClient) { }
 
   executeAuthenticationService(username, password) {
-    
-    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+    console.log(username)
 
+    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+console.log(basicAuthHeaderString)
     let headers = new HttpHeaders({
         Authorization: basicAuthHeaderString
       })
 
-    return this.http.get<AuthenticationBean>(
+    return this.http.post<AuthenticationBean>(
       `${API_URL}/login`,
       {headers}).pipe(
         map(

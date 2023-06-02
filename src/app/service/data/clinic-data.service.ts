@@ -22,7 +22,7 @@ export class ClinicDataService {
 
 //  retrieveAllClinics(username)
   retrieveAllClinics() {
-    return this.http.get<Clinic[]>(`${API_URL}/${OBJECT}s`);
+    return this.http.get<Clinic[]>(`${API_URL}/${OBJECT}`);
   }
 
   // deleteTodo(username, id){

@@ -7,9 +7,3 @@
   to = "/index.html"
   status = 200
 
-[[plugins]]
-  [plugins.inputs.postBuild]
-    enable = true
-
-  [plugins.inputs]
-    enable = false

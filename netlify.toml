@@ -10,10 +10,7 @@
 [build.environment]
   NODE_VERSION = "14.17.6"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+
 
 
 

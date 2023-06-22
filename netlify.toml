@@ -8,8 +8,6 @@
   status = 200
 
 [[plugins]]
-  package = "netlify-plugin-cypress"
-
   [plugins.inputs.postBuild]
     enable = true
 
